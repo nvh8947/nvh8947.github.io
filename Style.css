@@ -1,0 +1,26 @@
+body {
+  background-color: #0f0f0f; /* Deep dark grey */
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #333;
+}
+
+/* The "Cool" Hover Effect */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(247, 105, 2, 0.4); /* RIT Orange glow */
+  border-color: #f76902;
+}
