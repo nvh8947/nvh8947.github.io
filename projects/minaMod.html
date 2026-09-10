@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Mina Mod | Noah Holzheimer</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="../index.html" class="logo">NH</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">← Back to Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Project Header -->
+  <header class="project-hero container">
+    <div class="breadcrumb">
+      <a href="../index.html#projects">Projects</a> / Cosmic Mina Mod
+    </div>
+    <h1>Deadlock Modding</h1>
+    <p class="subtitle">A variety of character models and texture modifications for Valve's "Deadlock"
+
+    <!-- Project Metadata Bar -->
+    <div class="project-meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Developer</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Engine / Tools</span>
+        <span class="meta-value">Blender, Gimp, Source engine</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Languages</span>
+        <span class="meta-value">C++</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Timeline</span>
+        <span class="meta-value">3 Weeks (Solo)</span>
+      </div>
+    </div>
+
+    <!-- Quick Action Links -->
+    <div class="project-links">
+      <a href="https://gamebanana.com/mods/659832" target="_blank" rel="noopener" class="btn">Go to my mod page</a>
+      <a href="https://gamebanana.com/members/4953178" target="_blank" rel="noopener" class="btn btn-secondary">Modding profile</a>
+    </div>
+  </header>
+
+  <!-- Project Showcase Media -->
+  <section class="container media-section">
+    <img src="../images/DLPortfolioImage.png" width="50%"><br>
+    <a href="https://gamebanana.com/mods/659832"><img src="https://gamebanana.com/mods/embeddables/659832?type=large"/></a>
+  </section>
+
+  <!-- Technical Case Study Content -->
+  <main class="container project-details">
+
+    <!-- Section 1: Overview & Goal -->
+    <section class="detail-block">
+      <h2 class="section-title">Overview & Challenge</h2>
+      <p>
+        The hardest part about modding a live service game is the constantly changing tools and workflow. Many of the best practices are outdated within the next month.
+        <br>
+        Throughout my modding projects, however, my approach to the 3D pipeline (from idea to in-game asset) has stayed the same. I've learned a lot about UVs, file systems, and professional models.
+      </p>
+    </section>
+
+    <!-- Section 2: Details -->
+    <section class="detail-block">
+      <h2 class="section-title">Details</h2>
+      <p>
+        Most of my early mods are simple texture replacements. However, with more complex models that don't have as easy texture maps, it's became difficult to achieve the visions I had in mind without changing the UVs (see above image).
+      </p>
+      <!-- <ul class="tech-list">
+        <li><strong>Advection Pass:</strong> Uses semi-Lagrangian advection to move velocity and density attributes through a 3D volume texture array.</li>
+        <li><strong>Pressure Solve (Jacobi Iteration):</strong> Solves the Poisson equation iteratively on the GPU using ping-pong render targets to ensure divergence-free velocity vectors.</li>
+        <li><strong>Vorticity Confinement:</strong> Re-injects energy lost to numerical dissipation back into the velocity field to preserve fine swirling details.</li>
+      </ul> -->
+    </section>
+
+    <!-- <img src="../images/deadlock-preview.png" width="50%"> -->
+    <img src="../images/GeistWireframe.png" width="90%">
+
+    <!-- Section 3: Code / Shader Breakdown -->
+    <!-- <section class="detail-block">
+      <h2 class="section-title">HLSL Compute Shader Snippet</h2>
+      <p>Below is the core Jacobi iteration snippet used during the divergence and pressure solve pass:</p>
+      
+      <div class="code-block-wrapper">
+        <div class="code-header">
+          <span>FluidJacobiCompute.usf (HLSL)</span>
+        </div>
+        <pre><code>[numthreads(8, 8, 8)]
+void MainCS(uint33 ThreadID : SV_DispatchThreadID)
+{
+    int3 coord = int3(ThreadID);
+    
+    // Sample neighboring pressure values from ping-pong 3D Texture
+    float pL = TexturePressure[coord + int3(-1, 0, 0)].r;
+    float pR = TexturePressure[coord + int3( 1, 0, 0)].r;
+    float pB = TexturePressure[coord + int3( 0,-1, 0)].r;
+    float pT = TexturePressure[coord + int3( 0, 1, 0)].r;
+    float pD = TexturePressure[coord + int3( 0, 0,-1)].r;
+    float pU = TexturePressure[coord + int3( 0, 0, 1)].r;
+
+    float divergence = TextureDivergence[coord].r;
+
+    // Jacobi iteration formula for Poisson equation
+    float newPressure = (pL + pR + pB + pT + pD + pU - divergence) / 6.0f;
+    
+    OutputPressure[coord] = float4(newPressure, 0, 0, 1.0f);
+}</code></pre>
+      </div>
+    </section> -->
+
+    <!-- Section 4: Performance & Optimization -->
+    <!-- <section class="detail-block">
+      <h2 class="section-title">Profiling & Performance Metrics</h2>
+      <p>
+        Using RenderDoc and Unreal Insights, the compute dispatch loop was optimized by packing 3D volume parameters into RGBA16F formats and reducing Jacobi iterations from 40 to 18 using Chebyshev acceleration.
+      </p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-value">1.8 ms</span>
+          <span class="metric-label">Total GPU Frame Cost</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value">128³</span>
+          <span class="metric-label">Grid Voxel Resolution</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value">-42%</span>
+          <span class="metric-label">Memory VRAM Reduction</span>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Project Navigation Footer -->
+    <!-- <nav class="project-pagination">
+      <a href="procedural-dungeon.html" class="pagination-link prev">
+        <span>← Previous Project</span>
+        <strong>Procedural World Generator</strong>
+      </a>
+      <a href="ik-rig.html" class="pagination-link next">
+        <span>Next Project →</span>
+        <strong>Custom FABRIK Solver</strong>
+      </a>
+    </nav> -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-content">
+      <h2>Let's Connect</h2>
+      <p>Currently seeking Technical Art and Game Engineering opportunities.</p>
+      <div class="contact-links">
+        <a href="mailto:nvholzheimer@gmail.com" class="btn">Email Me</a>
+        <a href="https://github.com/nvh8947" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/noah-holzheimer/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/Noah_Holzheimer_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

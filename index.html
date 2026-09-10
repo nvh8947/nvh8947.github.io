@@ -1,55 +1,131 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="Style.css">
 <html lang="en">
-  <section id="projects">
-  <h1 class="animated-header">Noah Holzheimer - Game Development Portfolio</h1>
-  <div class="grid">
-    <div class="card">
-      <div class="card-content">
-        <h2>Deadlock Modding</h2>
-        <p>Troubleshooting and idea implementation<br>
-          Over 4k downloads
-        </p>
-        <a href="https://gamebanana.com/members/4953178">Mod Profile</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noah Holzheimer | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="logo">NH</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <video autoplay loop muted playsinline class="hero-video">
+      <source src="assets/PortfolioVideo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Noah Holzheimer</h1>
+      <p class="subtitle">Technical Artist & Game Engineer</p>
+      <div class="hero-tags">
+        <span>C++</span>
+        <span>C#</span>
+        <span>Unreal Engine 5</span>
+        <span>3D Pipeline</span>
       </div>
-      <img src="RitchieContainer.jpg">
-      <img src="DLPortfolioImage.png" alt="Deadlock Mod" height="400">
-      <div></div>
-      <a href="https://gamebanana.com/mods/659832" style="display: block;">
-        <img src="https://gamebanana.com/mods/embeddables/659832?type=large"/>
-      </a>
-      
-  </div>
-
-<div class="card">
-    <div class="card-content">
-      <h2>RIT Media Manager</h2>
-      <p>Example work</p>
-      <img src="TechTeamPoster.png" height="400">
-      <img src="ImaginePoster.png" alt="Deadlock Mod" height="400">
+      <a href="#projects" class="btn">View Work</a>
     </div>
-</div>
+  </header>
 
-  <div class="card">
-    <div class="card-content">
-      <h2>Dog With A Gun</h2>
-      <p><i>Class project</i></p>
-    </div>
-    <img src="DogWithAGun1.png" alt="Deadlock Mod" height="400">
-    <div></div>
-    <img src="DogWithAGun2.png" alt="Deadlock Mod" height="400">
-    <div></div>
-    
-  </div>
+  <main>
+    <section id="projects" class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="project-grid">
 
-  <div class="card">
-    <div class="card-content">
-      <h2>Unity Netcode</h2>
-      <p>Game Networking personal project</p>
-      <video autoplay loop muted playsinline class="project-video" width="1000" height="720">
-  <source src="UnityDemo.mp4" type="video/mp4" >
-  Your browser does not support the video tag.
-</video>
+        <a href="projects/minaMod.html" class="project-card">
+          <div class="card-media">
+            <img src="images/MinaMod.jpg" alt="A gameplay image of a character mod" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <h3>Cosmic Mina Deadlock Mod</h3>
+            <p>Model and Texture replacement character mod</p>
+            <div class="card-tags">
+              <span>Blender</span>
+              <span>Tech Art</span>
+              <span>Published</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="project-card">
+          <div class="card-media">
+            <video autoplay loop muted playsinline height="100%">
+              <source src="assets/UnityDemo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>Unity Networking Demo</h3>
+            <p>Game Networking personal project</p>
+            <div class="card-tags">
+              <span>C#</span>
+              <span>Networking</span>
+              <span>Unity</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-media">
+            <img src="images/RIT Esports Poster1.png" alt="RIT Esports SSBU Poster" loading="lazy" />
+          </div>
+          <div class="card-content">
+            <h3>RIT Esports Media Manager</h3>
+            <p>Lead a marketing and content creation team</p>
+            <div class="card-tags">
+              <span>General</span>
+              <span>Leadership</span>
+              <span>Animation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Languages</h4>
+          <p>C++, C#, HTML</p>
+        </div>
+        <div class="skill-category">
+          <h4>Engine & Graphics</h4>
+          <p>Unreal Engine 5, Unity</p>
+        </div>
+        <div class="skill-category">
+          <h4>Software & Tools</h4>
+          <p>Blender, Maya, Git</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+      <h2>Let's Connect</h2>
+      <p>Currently seeking Technical Art and Game Engineering opportunities.</p>
+      <div class="contact-links">
+        <a href="mailto:nvholzheimer@gmail.com" class="btn">Email Me</a>
+        <a href="https://github.com/nvh8947" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/noah-holzheimer/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/Noah_Holzheimer_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
     </div>
-</section>
+  </footer>
+
+</body>
+
 </html>
