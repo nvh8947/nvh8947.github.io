@@ -2,129 +2,122 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noah Holzheimer | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noah Holzheimer - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-
-  <nav class="navbar">
-    <a href="#" class="logo">NH</a>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero">
-    <video autoplay loop muted playsinline class="hero-video">
-      <source src="assets/PortfolioVideo.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Noah Holzheimer</h1>
-      <p class="subtitle">Technical Artist & Game Engineer</p>
-      <div class="hero-tags">
-        <span>C++</span>
-        <span>C#</span>
-        <span>Unreal Engine 5</span>
-        <span>3D Pipeline</span>
-      </div>
-      <a href="#projects" class="btn">View Work</a>
-    </div>
-  </header>
-
-  <main>
-    <section id="projects" class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="project-grid">
-
-        <a href="projects/minaMod.html" class="project-card">
-          <div class="card-media">
-            <img src="images/MinaMod.jpg" alt="A gameplay image of a character mod" loading="lazy" />
-          </div>
-          <div class="card-content">
-            <h3>Cosmic Mina Deadlock Mod</h3>
-            <p>Model and Texture replacement character mod</p>
-            <div class="card-tags">
-              <span>Blender</span>
-              <span>Tech Art</span>
-              <span>Published</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="project-card">
-          <div class="card-media">
-            <video autoplay loop muted playsinline height="100%">
-              <source src="assets/UnityDemo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div class="card-content">
-            <h3>Unity Networking Demo</h3>
-            <p>Game Networking personal project</p>
-            <div class="card-tags">
-              <span>C#</span>
-              <span>Networking</span>
-              <span>Unity</span>
-            </div>
-          </div>
+    <nav id="navbar">
+        <div id="navbar-logo">
+            <a href="/index.html">NVH</a>
         </div>
 
-        <div class="project-card">
-          <div class="card-media">
-            <img src="images/RIT Esports Poster1.png" alt="RIT Esports SSBU Poster" loading="lazy" />
-          </div>
-          <div class="card-content">
-            <h3>RIT Esports Media Manager</h3>
-            <p>Lead a marketing and content creation team</p>
-            <div class="card-tags">
-              <span>General</span>
-              <span>Leadership</span>
-              <span>Animation</span>
+        <ul id="navbar-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#featured">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="hero" class="hero">
+        <video loop muted playsinline id="hero-video">
+            <source src="assets/PortfolioVideo.mp4">
+        </video>
+
+        <div id="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Noah Holzheimer</h1>
+            <p>I'm a second year Game Design and Development student
+                who has a passion for <strong>Networking</strong> and <strong>Gameplay Programming</strong>
+            </p>
+            <div id="hero-buttons">
+                <a href="#projects" class="btn-dark">See My Work</a>
+                <a href="#contact" class="btn">Contact me</a>
             </div>
-          </div>
+        </div>
+    </header>
+
+    <section id="featured" class="featured-projects">
+        <h2>Featured Project</h2>
+        <div class="flex-row">
+            <div class="flex-col">
+                <h3>Online Multiplayer Web-based Pong</h3>
+                <p>
+                    A Unity WebGL build cooperating with PeerJS to communicate chats, movement, and game state all in
+                    the browser
+                </p>
+                <a class="btn" href="projects/cardDetailsTemplate.html">Check it out</a>
+            </div>
+            <img id="featured-img" src="images/PongScreenshot.png">
         </div>
 
-      </div>
     </section>
 
-    <section id="about" class="container">
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h4>Languages</h4>
-          <p>C++, C#, HTML</p>
-        </div>
-        <div class="skill-category">
-          <h4>Engine & Graphics</h4>
-          <p>Unreal Engine 5, Unity</p>
-        </div>
-        <div class="skill-category">
-          <h4>Software & Tools</h4>
-          <p>Blender, Maya, Git</p>
-        </div>
-      </div>
-    </section>
-  </main>
+    <hr>
 
-  <footer id="contact">
-    <div class="container footer-content">
-      <h2>Let's Connect</h2>
-      <p>Currently seeking Technical Art and Game Engineering opportunities.</p>
-      <div class="contact-links">
-        <a href="mailto:nvholzheimer@gmail.com" class="btn">Email Me</a>
-        <a href="https://github.com/nvh8947" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/noah-holzheimer/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="assets/Noah_Holzheimer_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-      </div>
-    </div>
-  </footer>
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div id="projects-grid">
+            <div href="projects/minaMod.html" class="project-card">
+                <div class="card-media">
+                    <img src="images/DeadlockModCompiler.png" alt="A gameplay image of a character mod"
+                        loading="lazy" />
+                </div>
+                <div class="card-content">
+                    <h3>Deadlock Mod Compiler</h3>
+                    <p>A weekend project to make the Deadlock modding workflow easier</p>
+                    <div class="card-tags">
+                        <span>C#</span>
+                        <span>AI-Assisted</span>
+                    </div>
+                </div>
+            </div>
+
+            <div href="projects/minaMod.html" class="project-card">
+                <div class="card-media">
+                    <img src="images/MinaMod.jpg" alt="A gameplay image of a character mod" loading="lazy" />
+                </div>
+                <div class="card-content">
+                    <h3>Cosmic Mina</h3>
+                    <p>Model and Texture replacement character mod for Deadlock</p>
+                    <div class="card-tags">
+                        <span>Blender</span>
+                        <span>Source 2</span>
+                        <span>Published</span>
+                    </div>
+                </div>
+            </div>
+
+            <div href="projects/minaMod.html" class="project-card">
+                <div class="card-media">
+                    <img src="images/PlaywerksDemo.png" alt="A gameplay image of a character mod" loading="lazy" />
+                </div>
+                <div class="card-content">
+                    <h3>Playwerks Project Demo</h3>
+                    <p>Model and Texture replacement character mod for Deadlock</p>
+                    <div class="card-tags">
+                        <span>Unreal Engine</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <footer id="contact">
+        <h2>Contact Me</h2>
+        <p>Currently seeking Game and Software Engineering opportunities</p>
+        <div class="contact-links">
+            <a href="mailto:nvholzheimer@gmail.com" class="btn">Email Me</a>
+            <a href="https://github.com/nvh8947" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/noah-holzheimer/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="assets/Noah_Holzheimer_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </div>
+    </footer>
 
 </body>
 

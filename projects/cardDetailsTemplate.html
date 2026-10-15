@@ -1,175 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPU Eulerian Fluid Solver | Alex Mercer</title>
-  <!-- Notice the path goes up one directory to access style.css -->
-  <link rel="stylesheet" href="../style.css" />
-</head>
-<body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="../index.html" class="logo">AM</a>
-    <ul class="nav-links">
-      <li><a href="../index.html#projects">← Back to Projects</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noah Holzheimer - Portfolio</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <nav id="navbar">
+    <div id="navbar-logo">
+      <a href="/index.html">NVH</a>
+    </div>
+
+    <ul id="navbar-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#featured">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Project Header -->
-  <header class="project-hero container">
-    <div class="breadcrumb">
-      <a href="../index.html#projects">Projects</a> / GPU Fluid Solver
-    </div>
-    <h1>GPU Eulerian Fluid Solver</h1>
-    <p class="subtitle">Real-time 3D fluid simulation pipeline written in HLSL for Unreal Engine 5</p>
-
-    <!-- Project Metadata Bar -->
-    <div class="project-meta-grid">
-      <div class="meta-item">
-        <span class="meta-label">Role</span>
-        <span class="meta-value">Technical Artist & Engineer</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Engine / Tools</span>
-        <span class="meta-value">Unreal Engine 5, RenderDoc</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Languages</span>
-        <span class="meta-value">C++, HLSL (Compute Shader)</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Timeline</span>
-        <span class="meta-value">4 Weeks (Solo)</span>
-      </div>
-    </div>
-
-    <!-- Quick Action Links -->
-    <div class="project-links">
-      <a href="https://github.com/yourusername/fluid-solver" target="_blank" rel="noopener" class="btn">View Source Code (GitHub)</a>
-      <a href="#" class="btn btn-secondary">Download Playable Build (.zip)</a>
-    </div>
-  </header>
-
-  <!-- Project Showcase Media -->
-  <section class="container media-section">
-    <div class="video-container">
-      <video autoplay loop muted playsinline controls>
-        <source src="../assets/projects/fluid-sim-demo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+  <section class="ptop-section">
+    <h1>Spong</h1>
+    <h2>Online Multiplayer Web-based Pong</h2>
+    <p>
+      A WebGL Unity build that links with PeerJS (for signaling and communication) to create a shared realtime Web-based
+      <i>Pong</i> experience.
+    </p>
+    <a class="btn" href="../Pong Demo/index.html">Play Now</a>
   </section>
 
-  <!-- Technical Case Study Content -->
-  <main class="container project-details">
+  <hr>
 
-    <!-- Section 1: Overview & Goal -->
-    <section class="detail-block">
-      <h2 class="section-title">Overview & Challenge</h2>
-      <p>
-        Standard particle-based fluid simulations in UE5 can become memory and compute-bound when scaling to hundreds of thousands of dynamic particles. The goal of this project was to implement a grid-based <strong>Eulerian Navier-Stokes fluid solver</strong> executing entirely on the GPU via Compute Shaders to achieve high-density fluid interactions at 60+ FPS on mid-tier hardware.
-      </p>
-    </section>
+  <section id="about" class="about">
+    <h2>About</h2>
+    <p>
+      Originally started as a class project for local multiplayer input, I extended the Pong idea to have multiplayer
+      input. Since the rubric and requirements needed the project to build to the web, regular Unity NGO (Netcode for Game
+      Objects) was out of the question.
+    </p>
+    <p>
+      However, this allowed me to write my own netcode implementation and research packet sending and parsing.
+    </p>
+  </section>
 
-    <!-- Section 2: Technical Implementation -->
-    <section class="detail-block">
-      <h2 class="section-title">Technical Implementation</h2>
-      <p>
-        The simulation relies on a 3-pass compute shader pipeline dispatched every frame prior to render pass setup:
-      </p>
-      <ul class="tech-list">
-        <li><strong>Advection Pass:</strong> Uses semi-Lagrangian advection to move velocity and density attributes through a 3D volume texture array.</li>
-        <li><strong>Pressure Solve (Jacobi Iteration):</strong> Solves the Poisson equation iteratively on the GPU using ping-pong render targets to ensure divergence-free velocity vectors.</li>
-        <li><strong>Vorticity Confinement:</strong> Re-injects energy lost to numerical dissipation back into the velocity field to preserve fine swirling details.</li>
-      </ul>
-    </section>
+  <hr>
 
-    <!-- Section 3: Code / Shader Breakdown -->
-    <section class="detail-block">
-      <h2 class="section-title">HLSL Compute Shader Snippet</h2>
-      <p>Below is the core Jacobi iteration snippet used during the divergence and pressure solve pass:</p>
-      
-      <div class="code-block-wrapper">
-        <div class="code-header">
-          <span>FluidJacobiCompute.usf (HLSL)</span>
-        </div>
-        <pre><code>[numthreads(8, 8, 8)]
-void MainCS(uint33 ThreadID : SV_DispatchThreadID)
-{
-    int3 coord = int3(ThreadID);
-    
-    // Sample neighboring pressure values from ping-pong 3D Texture
-    float pL = TexturePressure[coord + int3(-1, 0, 0)].r;
-    float pR = TexturePressure[coord + int3( 1, 0, 0)].r;
-    float pB = TexturePressure[coord + int3( 0,-1, 0)].r;
-    float pT = TexturePressure[coord + int3( 0, 1, 0)].r;
-    float pD = TexturePressure[coord + int3( 0, 0,-1)].r;
-    float pU = TexturePressure[coord + int3( 0, 0, 1)].r;
-
-    float divergence = TextureDivergence[coord].r;
-
-    // Jacobi iteration formula for Poisson equation
-    float newPressure = (pL + pR + pB + pT + pD + pU - divergence) / 6.0f;
-    
-    OutputPressure[coord] = float4(newPressure, 0, 0, 1.0f);
-}</code></pre>
-      </div>
-    </section>
-
-    <!-- Section 4: Performance & Optimization -->
-    <section class="detail-block">
-      <h2 class="section-title">Profiling & Performance Metrics</h2>
-      <p>
-        Using RenderDoc and Unreal Insights, the compute dispatch loop was optimized by packing 3D volume parameters into RGBA16F formats and reducing Jacobi iterations from 40 to 18 using Chebyshev acceleration.
-      </p>
-
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <span class="metric-value">1.8 ms</span>
-          <span class="metric-label">Total GPU Frame Cost</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-value">128³</span>
-          <span class="metric-label">Grid Voxel Resolution</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-value">-42%</span>
-          <span class="metric-label">Memory VRAM Reduction</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Project Navigation Footer -->
-    <nav class="project-pagination">
-      <a href="procedural-dungeon.html" class="pagination-link prev">
-        <span>← Previous Project</span>
-        <strong>Procedural World Generator</strong>
-      </a>
-      <a href="ik-rig.html" class="pagination-link next">
-        <span>Next Project →</span>
-        <strong>Custom FABRIK Solver</strong>
-      </a>
-    </nav>
-
-  </main>
-
-  <!-- Footer -->
   <footer id="contact">
-    <div class="container footer-content">
-      <h2>Let's Connect</h2>
-      <p>Currently seeking Technical Art and Game Engineering opportunities.</p>
-      <div class="contact-links">
-        <a href="mailto:your.email@domain.com" class="btn">Email Me</a>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="../assets/resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-      </div>
-      <p class="copyright">&copy; 2026 Alex Mercer. All rights reserved.</p>
+    <h2>Contact Me</h2>
+    <p>Currently seeking Game and Software Engineering opportunities</p>
+    <div class="contact-links">
+      <a href="mailto:nvholzheimer@gmail.com" class="btn">Email Me</a>
+      <a href="https://github.com/nvh8947" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/noah-holzheimer/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="assets/Noah_Holzheimer_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
     </div>
   </footer>
 
 </body>
+
 </html>
