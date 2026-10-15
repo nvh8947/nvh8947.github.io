@@ -61,7 +61,7 @@ span {
 .btn {
     display: inline-block;
     background: var(--accent);
-    color: #000;
+    color: white;
     padding: 0.8rem 1.8rem;
     border-radius: 4px;
     font-weight: 600;
@@ -73,12 +73,13 @@ span {
 .btn-dark {
     display: inline-block;
     background: var(--dark-color-trans);
-    color: #000;
+    color: white;
     padding: 0.8rem 1.8rem;
     border: 0.3rem solid var(--accent);
     border-radius: 4px;
     font-weight: 600;
     transition: transform 0.2s ease, opacity 0.2s ease;
+    text-wrap-mode: nowrap;
 }
 
 .flex-col {
