@@ -267,3 +267,19 @@ span {
 .demo-reel{
     width: 80vw;
 }
+
+.img-full{
+    width: 100%;
+}
+
+.img-half{
+    width: 50%;
+}
+
+.img-80{
+    width: 80%;
+}
+
+.width8{
+    width: 80%;
+}
